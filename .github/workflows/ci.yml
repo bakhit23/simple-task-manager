@@ -15,3 +15,11 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t simple-task-manager .
+
+      - name: Run Docker container
+        run: docker run -d -p 5000:5000 --name task-manager-test simple-task-manager
+
+      - name: Test application
+        run: |
+          sleep 5
+          curl --fail http://127.0.0.1:5000
